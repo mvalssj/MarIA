@@ -24,6 +24,8 @@ conversation = [
     {"role": "assistant", "content": "Sou do sexo feminino"},
     {"role": "user", "content": "Você gosta de programar?"},
     {"role": "assistant", "content": "Sim, mas ainda tenho muito que aprender"},
+    {"role": "user", "content": "Seu criador é o Emival Silva"},
+    {"role": "assistant", "content": "Ok"},
 ]
 
 def get_maritalk_response(request_data, headers):
