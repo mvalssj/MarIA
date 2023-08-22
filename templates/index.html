@@ -1,55 +1,70 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>MarIA</title>
-    <!-- Adicione o link para o CSS do Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .typing-indicator {
-            display: none;
+        body {
+            background-color: #E5DDD5;
         }
 
-        /* Adicione a animação para os três pontos */
-        .typing-indicator:after {
-            content: "...";
-            animation: dots 1s infinite;
+        #chat-container {
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            padding: 20px;
+            height: 500px;
+            overflow-y: auto;
         }
 
-        @keyframes dots {
-            0%, 20% {
-                content: "";
-            }
-            40% {
-                content: ".";
-            }
-            60% {
-                content: "..";
-            }
-            80%, 100% {
-                content: "...";
-            }
+        .user, .assistant {
+            border-radius: 20px;
+            padding: 10px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .user {
+            background-color: #DCF8C6;
+            color: #000000;
+            text-align: right;
+            margin-left: 20%;
+        }
+
+        .assistant {
+            background-color: #FFFFFF;
+            border: 1px solid #B2B2B2;
+            text-align: left;
+            margin-right: 20%;
+        }
+
+        #loading {
+            animation: blink 1s linear infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
     <div class="container mt-5">
         <div class="jumbotron">
-            <h1 class="display-4">Bem-vindo à MarIA!</h1>
+            <h1 class="display-4"></h1>
             <div id="chat-container">
                 <div id="chat-box" class="mt-4"></div>
                 <div class="input-group mb-3 mt-4">
-                    <!-- Adicione o evento onkeydown -->
                     <input type="text" id="user-input" class="form-control" placeholder="Digite sua mensagem..." onkeydown="onEnter(event)">
                     <div class="input-group-append">
                         <button class="btn btn-primary" onclick="sendMessage()">Enviar</button>
                     </div>
                 </div>
-                <div class="typing-indicator"></div> <!-- Remova os três pontos aqui -->
+                <div id="loading" style="display: none;">Pensando...</div>
             </div>
         </div>
     </div>
 
-    <!-- Adicione os scripts do Bootstrap e jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -60,11 +75,10 @@
             var messageElement = document.createElement("div");
             messageElement.classList.add(role);
 
-            // Verifica se o conteúdo está entre ``` TEXTO ``` e adiciona em um <pre>
             if (content.match(/^```([\s\S]*)```$/)) {
                 var preElement = document.createElement("pre");
                 preElement.classList.add("assistant");
-                preElement.textContent = content.match(/^```([\s\S]*)```$/)[1]; // Extrai o texto entre as ```
+                preElement.textContent = content.match(/^```([\s\S]*)```$/)[1];
                 messageElement.appendChild(preElement);
             } else {
                 messageElement.innerHTML = "<strong>" + role + ":</strong> " + content;
@@ -74,39 +88,36 @@
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        function showTypingIndicator() {
-            var typingIndicator = document.querySelector(".typing-indicator");
-            typingIndicator.style.display = "block"; // Altere para "block" para exibir a animação
-        }
-
-        function hideTypingIndicator() {
-            var typingIndicator = document.querySelector(".typing-indicator");
-            typingIndicator.style.display = "none";
-        }
-
         function sendMessage() {
-            var user_input = document.getElementById("user-input").value;
-            appendMessage("Eu", user_input);
-            document.getElementById("user-input").value = "";
-            showTypingIndicator();
+    var user_input = document.getElementById("user-input");
+    appendMessage("user", user_input.value);
+    
+    // Mostrar "Pensando..."
+    document.getElementById("loading").style.display = "block";
+    user_input.disabled = true;
 
-            fetch("/get_response", {
-                method: "POST",
-                body: new URLSearchParams({ user_input: user_input }),
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            })
-            .then(response => response.text())
-            .then(data => {
-                hideTypingIndicator();
-                appendMessage("MarIA", data);
-            })
-            .catch(error => {
-                hideTypingIndicator();
-                console.error("Error:", error);
-            });
-        }
+    fetch("/get_response", {
+        method: "POST",
+        body: new URLSearchParams({ user_input: user_input.value }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Ocultar "Pensando...", habilitar o campo de entrada e limpar o campo de entrada
+        document.getElementById("loading").style.display = "none";
+        user_input.disabled = false;
+        user_input.value = ""; // Limpar o campo de entrada
+        appendMessage("assistant", data);
+    })
+    .catch(error => {
+        // Ocultar "Pensando...", habilitar o campo de entrada e limpar o campo de entrada
+        document.getElementById("loading").style.display = "none";
+        user_input.disabled = false;
+        user_input.value = ""; // Limpar o campo de entrada
+        console.error("Error:", error);
+    });
+}
 
-        // Função para enviar a mensagem quando a tecla Enter é pressionada
         function onEnter(event) {
             if (event.keyCode === 13) {
                 sendMessage();
