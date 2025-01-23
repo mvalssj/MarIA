@@ -14,9 +14,6 @@ auth_header = {
     "authorization": f"Key {my_key}"
 }
 
-def testa_git():
- teste='teste'
-
  
 # Few-shots fixos que serão sempre carregados
 conversation = [
