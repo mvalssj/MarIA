@@ -13,6 +13,10 @@ my_key = "100172439600069165309$dc46dcdc8197293e2752ddc03f1a6cc2ca1d5008ef630dd2
 auth_header = {
     "authorization": f"Key {my_key}"
 }
+
+def testa_git():
+ teste='teste'
+
  
 # Few-shots fixos que serão sempre carregados
 conversation = [
