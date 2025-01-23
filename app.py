@@ -88,3 +88,4 @@ if __name__ == '__main__':
     print(f"Servidor iniciado em http://{local_ip}:5000/")
     app.run(debug=True)
   testessss
+testes
