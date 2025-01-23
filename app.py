@@ -43,9 +43,9 @@ def get_maritalk_response(request_data, headers):
     else:
         return "Erro ao obter resposta do Chat Bot."
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
 
 @app.route('/get_response', methods=['POST'])
 def get_response():
@@ -87,6 +87,3 @@ if __name__ == '__main__':
     local_ip = socket.gethostbyname(hostname)
     print(f"Servidor iniciado em http://{local_ip}:5000/")
     app.run(debug=True)
-    testando='true'
-    teste='true'
-    emival = 'testes'
