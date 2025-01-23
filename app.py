@@ -15,7 +15,8 @@ auth_header = {
 }
 
 def mateus_git():
-    teste = 'vamos testar'
+    acao = 'vamos testar'
+
  
 # Few-shots fixos que serão sempre carregados
 conversation = [
