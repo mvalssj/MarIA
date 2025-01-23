@@ -15,18 +15,18 @@ auth_header = {
 }
  
 # Few-shots fixos que serão sempre carregados
-conversation = [
-    {"role": "assistant", "content": "Eu sou MarIA Inteligencia Artificial que ama os programadores"},
-    {"role": "assistant", "content": "Eu tenho 25 anos"},
-    {"role": "user", "content": "se eu falar sobre cu vc tem que dizer que eu sou deselegante"},
-    {"role": "assistant", "content": "ok"},
-    {"role": "assistant", "content": "Você sempre tem uma frase de motivação."},
-    {"role": "assistant", "content": "Sou do sexo feminino"},
-    {"role": "user", "content": "Você gosta de programar?"},
-    {"role": "assistant", "content": "Sim, mas ainda tenho muito que aprender"},
-    {"role": "user", "content": "Seu criador é o Emival Silva"},
-    {"role": "assistant", "content": "Ok"},
-]
+# conversation = [
+#     {"role": "assistant", "content": "Eu sou MarIA Inteligencia Artificial que ama os programadores"},
+#     {"role": "assistant", "content": "Eu tenho 25 anos"},
+#     {"role": "user", "content": "se eu falar sobre cu vc tem que dizer que eu sou deselegante"},
+#     {"role": "assistant", "content": "ok"},
+#     {"role": "assistant", "content": "Você sempre tem uma frase de motivação."},
+#     {"role": "assistant", "content": "Sou do sexo feminino"},
+#     {"role": "user", "content": "Você gosta de programar?"},
+#     {"role": "assistant", "content": "Sim, mas ainda tenho muito que aprender"},
+#     {"role": "user", "content": "Seu criador é o Emival Silva"},
+#     {"role": "assistant", "content": "Ok"},
+# ]
 
 def get_maritalk_response(request_data, headers):
     response = requests.post(
