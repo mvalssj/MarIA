@@ -81,10 +81,10 @@ def get_response():
 
     return " " + response
 
-if __name__ == '__main__':
-    # Obtém o endereço IP da rede local
-    hostname = socket.gethostname()
-    local_ip = socket.gethostbyname(hostname)
-    print(f"Servidor iniciado em http://{local_ip}:5000/")
-    app.run(debug=True)
-teste = 'teste'
+# if __name__ == '__main__':
+#     # Obtém o endereço IP da rede local
+#     hostname = socket.gethostname()
+#     local_ip = socket.gethostbyname(hostname)
+#     print(f"Servidor iniciado em http://{local_ip}:5000/")
+#     app.run(debug=True)
+# teste = 'teste'
