@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request
-from flask_bootstrap import Bootstrap
-import requests
-import socket
+# from flask import Flask, render_template, request
+# from flask_bootstrap import Bootstrap
+# import requests
+# import socket
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
