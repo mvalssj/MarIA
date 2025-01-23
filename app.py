@@ -14,6 +14,8 @@ auth_header = {
     "authorization": f"Key {my_key}"
 }
 
+def mateus_git():
+    teste = 'vamos testar'
  
 # Few-shots fixos que serão sempre carregados
 conversation = [
