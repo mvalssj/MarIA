@@ -87,4 +87,6 @@ if __name__ == '__main__':
     local_ip = socket.gethostbyname(hostname)
     print(f"Servidor iniciado em http://{local_ip}:5000/")
     app.run(debug=True)
-    teste='teste'
+    testando='true'
+    teste='true'
+    emival='true'
