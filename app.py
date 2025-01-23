@@ -43,9 +43,9 @@ def get_maritalk_response(request_data, headers):
     else:
         return "Erro ao obter resposta do Chat Bot."
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
 
 @app.route('/get_response', methods=['POST'])
 def get_response():
