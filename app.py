@@ -14,11 +14,6 @@ auth_header = {
     "authorization": f"Key {my_key}"
 }
 
-# def mateus_git():
-#     acao = 'vamos testar'
-desenvolvedor ='giuliano'
-
- 
 # Few-shots fixos que serão sempre carregados
 conversation = [
     {"role": "assistant", "content": "Eu sou MarIA Inteligencia Artificial que ama os programadores"},
